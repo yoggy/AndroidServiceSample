@@ -18,16 +18,21 @@ public class BindServiceActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bind_service);
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         Intent intent = new Intent(this, MainService.class);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onPause() {
         Intent intent = new Intent(this, MainService.class);
         unbindService(serviceConnection);
-        super.onDestroy();
+        super.onPause();
     }
 
     ServiceConnection serviceConnection = new ServiceConnection() {
