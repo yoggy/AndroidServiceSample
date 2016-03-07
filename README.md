@@ -53,6 +53,8 @@ bindService()
     };
     
 
+Activity.onCreate()内でbindService()を呼び出した場合、
+先にonResume()が呼び出され、次にServiceConnection.onServiceConnected()が呼び出されるので、初期化時の順番に注意。
 
 Copyright and license
 ----
